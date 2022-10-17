@@ -2,7 +2,19 @@ import { useState, useEffect } from 'react'
 import { Box, Stack, Typography } from '@mui/material'
 import { Sidebar, Videos } from './'
 
+import { fetchFromAPI } from '../utils/fetchFromAPI'
+
 const Feed = () => {
+  const [selectedCategory, setSelectedCategory] = useState('New')
+  const [videos, setVideos] = useState([])
+
+  useEffect(() => {
+    fetchFromAPI(`search?q=${selectedCategory}&part=snippet%2Cid&regionCode=US&maxResults=50&order=date`).then((data) => {
+      setVideos(data.items)
+      console.log(selectedCategory)
+    })
+  }, [selectedCategory])
+
   return (
     <Stack sx={{ flexDirection: { sx: 'column', md: 'row' } }}>
       <Box
@@ -12,8 +24,10 @@ const Feed = () => {
           px: { sx: 0, md: '2' },
         }}
       >
-        <Sidebar />
-
+        <Sidebar
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+        />
         <Typography
           className='copyright'
           variant='body2'
@@ -22,16 +36,17 @@ const Feed = () => {
           Copyright 2022 Youtube
         </Typography>
       </Box>
+
       <Box p={2} sx={{ overflowY: 'auto', height: '90vh', flex: 2 }}>
         <Typography
           variant='h4'
-          fontweight='bold'
+          fontWeight='bold'
           mb={2}
           sx={{ color: 'white' }}
         >
-          New <span style={{ color: '#f31503' }}> Videos</span>
+          {selectedCategory} <span style={{ color: '#f31503' }}> Videos</span>
         </Typography>
-        <Videos  videos={[]} />
+        <Videos videos={videos} />
       </Box>
     </Stack>
   )
