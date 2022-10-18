@@ -9,7 +9,9 @@ const Feed = () => {
   const [videos, setVideos] = useState([])
 
   useEffect(() => {
-    fetchFromAPI(`search?q=${selectedCategory}&part=snippet%2Cid&regionCode=US&maxResults=50&order=date`).then((data) => {
+    fetchFromAPI(
+      `search?q=${selectedCategory}&part=snippet%2Cid&regionCode=TR&maxResults=50&order=date`
+    ).then((data) => {
       setVideos(data.items)
       console.log(selectedCategory)
     })
