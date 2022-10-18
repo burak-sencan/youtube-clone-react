@@ -73,14 +73,13 @@ const VideoDetail = () => {
             </Stack>
           </Box>
         </Box>
-
         <Box
           px={2}
           py={{ md: 1, sx: 5 }}
           justifyContent='center'
           alighnItems='center'
         >
-          <Videos videos={videos} direction='column' />
+          {videos && <Videos videos={videos} direction='column' />}
         </Box>
       </Stack>
     </Box>

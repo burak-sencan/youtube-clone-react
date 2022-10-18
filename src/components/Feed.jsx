@@ -9,7 +9,7 @@ const Feed = () => {
   const [videos, setVideos] = useState([])
 
   useEffect(() => {
-    fetchFromAPI(`search?q=${selectedCategory}&part=snippet%2Cid&`).then(
+    fetchFromAPI(`search?part=snippet&order=date&q=${selectedCategory} `).then(
       (data) => {
         setVideos(data.items)
       }
@@ -17,7 +17,11 @@ const Feed = () => {
   }, [selectedCategory])
 
   return (
-    <Stack sx={{ flexDirection: { sx: 'column', md: 'row' } }}>
+    <Stack
+      alignItems='center'
+      justifyContent='center'
+      sx={{ flexDirection: { sx: 'column', md: 'row' } }}
+    >
       <Box
         sx={{
           height: { sx: 'auto', md: '92vh' },

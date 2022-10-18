@@ -3,11 +3,9 @@ import { Typography, Card, CardContent, CardMedia } from '@mui/material'
 import { CheckCircle } from '@mui/icons-material'
 
 import {
-  demoThumbnailUrl,
   demoVideoUrl,
   demoVideoTitle,
   demoChannelUrl,
-  demoChannelTitle,
 } from '../utils/constants'
 
 const VideoCard = ({
@@ -24,7 +22,7 @@ const VideoCard = ({
         boxShadow: 0,
       }}
     >
-      <Link to={videoId ? `video/${videoId}` : demoVideoUrl}>
+      <Link to={videoId ? `/video/${videoId}` : demoVideoUrl}>
         <CardMedia
           image={snippet?.thumbnails?.high.url}
           alt={snippet?.title}
