@@ -8,6 +8,7 @@ const options = {
     part: 'snippet,id',
     maxResults: '50',
     order: 'date',
+    regionCode:'US'
   },
   headers: {
     'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY,
